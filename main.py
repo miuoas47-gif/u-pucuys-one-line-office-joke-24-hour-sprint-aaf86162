@@ -10,13 +10,10 @@ JOKE = "My manager told me to treat this job like it's my own business, so I imm
 
 
 def main():
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output/entry.txt"
     # MAKEFUN_OUTPUT_DIR is a directory; fall back to /output if unset.
-    if os.environ.get("MAKEFUN_OUTPUT_DIR"):
-        path = os.path.join(out_dir, "entry.txt")
-    else:
-        path = "/output/entry.txt"
-    os.makedirs(os.path.dirname(path), exist_ok=True)
+    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
+    path = os.path.join(out_dir, "entry.txt")
+    os.makedirs(out_dir, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(JOKE + "\n")
     print(JOKE)
